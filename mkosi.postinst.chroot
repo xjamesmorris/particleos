@@ -7,6 +7,12 @@ if command -v authselect >/dev/null; then
     authselect enable-feature with-systemd-homed
 fi
 
+if [[ "$DISTRIBUTION" == fedora && "$ARCHITECTURE" == riscv64 ]]; then
+    sed --in-place --regexp-extended \
+        's/^[[:space:]#]*LOGIN_TIMEOUT[[:space:]].*/LOGIN_TIMEOUT 1800/' \
+        /etc/login.defs
+fi
+
 if [[ -d /etc/pam.d ]]; then
     find /etc/pam.d -mindepth 1 -exec mv {} /usr/lib/pam.d \;
     rmdir /etc/pam.d

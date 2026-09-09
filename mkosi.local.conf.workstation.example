@@ -1,0 +1,9 @@
+[Distribution]
+Distribution=fedora
+Release=44
+Architecture=riscv64
+
+[Content]
+Packages=
+        fastfetch
+        sudo
